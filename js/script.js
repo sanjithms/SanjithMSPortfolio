@@ -1,11 +1,13 @@
-document.querySelectorAll('.gallary img').forEach(image =>{
-    image.onclick = () =>{
-        document.querySelector('.popup').style.display ='block';
+document.querySelectorAll('.gallary img').forEach(image => {
+    image.onclick = () => {
+        console.log('Image clicked:', image.src); // Check if image click is detected
+        document.querySelector('.popup').style.display = 'block';
         document.querySelector('.popup img').src = image.getAttribute('src');
     }
 });
-document.querySelector('.popup span').onclick = () =>{
-    document.querySelector('.popup').style.display ='none'; 
+document.querySelector('.popup span').onclick = () => {
+    console.log('Close popup'); // Check if close event is triggered
+    document.querySelector('.popup').style.display = 'none';
 }
 
 var typed=new Typed(".typing",{
@@ -96,13 +98,22 @@ const navTogglerBtn=document.querySelector(".nav-toggler"),
     }
 
 
-function sendMail(){
-    let parms = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value,
+    function sendMail() {
+        let parms = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            subject: document.getElementById("subject").value,
+            message: document.getElementById("message").value,
+        };
     
+        emailjs.send("service_xlferpv", "template_h3r4tgf", parms)
+            .then(response => {
+                alert("Email sent successfully!");
+                console.log('SUCCESS!', response.status, response.text);
+            })
+            .catch(error => {
+                alert("Failed to send email. Please try again later.");
+                console.error('FAILED...', error);
+            });
     }
-    emailjs.send("service_xlferpv","template_h3r4tgf",parms).then(alert("Email sent successfully!!"))
-}
+    
