@@ -98,22 +98,14 @@ const navTogglerBtn=document.querySelector(".nav-toggler"),
     }
 
 
-    function sendMail() {
+    function sendMail(){
         let parms = {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,
             subject: document.getElementById("subject").value,
             message: document.getElementById("message").value,
-        };
-    
-        emailjs.send("service_xlferpv", "template_h3r4tgf", parms)
-            .then(response => {
-                alert("Email sent successfully!");
-                console.log('SUCCESS!', response.status, response.text);
-            })
-            .catch(error => {
-                alert("Failed to send email. Please try again later.");
-                console.error('FAILED...', error);
-            });
+        
+        }
+        emailjs.send("service_xlferpv","template_h3r4tgf",parms).then(alert("Email sent successfully!!"))
     }
     
